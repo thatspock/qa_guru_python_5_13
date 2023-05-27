@@ -15,10 +15,10 @@ def setup_desktop_browser(request):
 
 @pytest.fixture(params=[(320, 240), (480, 360)])
 def setup_mobile_browser(request):
+    mobile_emulation = {"deviceMetrics": {"width": request.param[0], "height": request.param[1], "pixelRatio": 3.0}}
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
     browser.config.driver_options = chrome_options
-    browser.config.window_height = request.param[0]
-    browser.config.window_weight = request.param[1]
     yield browser
     browser.quit()
 
