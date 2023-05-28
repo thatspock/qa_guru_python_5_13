@@ -2,8 +2,11 @@ import pytest
 from selene import browser
 from selenium import webdriver
 
+desktop_sizes = [(1710, 1121), (1470, 956)]
+mobile_sizes = [(360, 780), (428, 926)]
 
-@pytest.fixture(params=[(1710, 1121), (1470, 956)])
+
+@pytest.fixture(params=desktop_sizes)
 def setup_desktop_browser(request):
     chrome_options = webdriver.ChromeOptions()
     browser.config.driver_options = chrome_options
@@ -15,12 +18,12 @@ def setup_desktop_browser(request):
     browser.quit()
 
 
-@pytest.fixture(params=[(320, 240), (480, 360)])
+@pytest.fixture(params=mobile_sizes)
 def setup_mobile_browser(request):
-    mobile_emulation = {"deviceMetrics": {"width": request.param[0], "height": request.param[1], "pixelRatio": 3.0}}
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
     browser.config.driver_options = chrome_options
+    browser.config.window_width = request.param[0]
+    browser.config.window_height = request.param[1]
 
     yield browser
 
