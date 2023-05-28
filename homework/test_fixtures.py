@@ -7,9 +7,11 @@ from selenium import webdriver
 def setup_desktop_browser(request):
     chrome_options = webdriver.ChromeOptions()
     browser.config.driver_options = chrome_options
-    browser.config.window_height = request.param[0]
-    browser.config.window_weight = request.param[1]
+    browser.config.window_width = request.param[0]
+    browser.config.window_height = request.param[1]
+
     yield browser
+
     browser.quit()
 
 
@@ -19,7 +21,9 @@ def setup_mobile_browser(request):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
     browser.config.driver_options = chrome_options
+
     yield browser
+
     browser.quit()
 
 
