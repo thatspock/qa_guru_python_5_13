@@ -25,10 +25,11 @@ def web_browser(request):
 def test_github_desktop(web_browser):
     browser.open('https://github.com/')
     browser.element('.HeaderMenu-link--sign-in').click()
-
+    browser.element('[type="submit"]').click()
 
 @mobile_only
 def test_github_mobile(web_browser):
     browser.open('https://github.com/')
     browser.element('.Button--link').click()
     browser.element('.HeaderMenu-link--sign-in').click()
+    browser.element('[type="submit"]').click()

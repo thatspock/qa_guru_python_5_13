@@ -33,9 +33,11 @@ def setup_mobile_browser(request):
 def test_github_desktop(setup_desktop_browser):
     browser.open('https://github.com/')
     browser.element('.HeaderMenu-link--sign-in').click()
+    browser.element('[type="submit"]').click()
 
 
 def test_github_mobile(setup_mobile_browser):
     browser.open('https://github.com/')
     browser.element('.Button--link').click()
     browser.element('.HeaderMenu-link--sign-in').click()
+    browser.element('[type="submit"]').click()

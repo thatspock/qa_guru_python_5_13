@@ -27,7 +27,7 @@ def test_github_desktop(web_browser, request):
 
     browser.open('https://github.com/')
     browser.element('.HeaderMenu-link--sign-in').click()
-
+    browser.element('[type="submit"]').click()
 
 def test_github_mobile(web_browser, request):
     if 'desktop' in request.node.name:
@@ -36,3 +36,4 @@ def test_github_mobile(web_browser, request):
     browser.open('https://github.com/')
     browser.element('.Button--link').click()
     browser.element('.HeaderMenu-link--sign-in').click()
+    browser.element('[type="submit"]').click()
